@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STI PROJECTS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <style>
+    :root {
+      --primary: #15d144;
+      --primary-dark: #211aa5;
+      --success: #bccb10;
+      --error: #ef4444;
+      --bg: #19409a;
+      --card-bg: #1e293b;
+      --text: #10c510;
+      --text-secondary: #ce511b;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 20%);
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 500px;
+      perspective: 1000px;
+    }
+    
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent,
+        transparent,
+        transparent,
+        rgba(219, 16, 16, 0.1)
+      );
+      transform: rotate(30deg);
+      animation: shine 6s infinite;
+    }
+    
+    @keyframes shine {
+      0%, 100% {
+        transform: rotate(30deg) translate(-10%, -10%);
+      }
+      50% {
+        transform: rotate(30deg) translate(10%, 10%);
+      }
+    }
+    
+    .card:hover {
+      transform: translateY(-5px) rotateX(5deg);
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    
+    .header h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--success));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    
+    .header p {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    
+    .logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, var(--primary), var(--success));
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6);
+      }
+    }
+    
+    .logo svg {
+      width: 30px;
+      height: 30px;
+      fill: white;
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    
+    .input-wrapper {
+      position: relative;
+    }
+    
+    .input-wrapper::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--success));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    
+    .input-wrapper:focus-within::after {
+      transform: scaleX(1);
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(234, 75, 7, 0.2);
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(235, 104, 141, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(7, 230, 14, 0.5);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    
+    .btn:hover::after {
+      transform: translateX(100%);
+    }
+    
+    .status {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .status.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .status.success {
+      background: rgba(42, 14, 230, 0.1);
+      color: var(--success);
+    }
+    
+    .status.error {
+      background: rgba(59, 218, 6, 0.1);
+      color: var(--error);
+    }
+    
+    .connection-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    
+    .connection-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+      background: var(--error);
+      animation: pulse 2s infinite;
+    }
+    
+    .connection-dot.connected {
+      background: var(--success);
+    }
+    
+    .settings-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .settings-toggle:hover {
+      color: var(--primary);
+      transform: rotate(90deg);
+    }
+    
+    .settings-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      margin-top: 0;
+    }
+    
+    .settings-panel.open {
+      max-height: 300px;
+      margin-top: 20px;
+    }
+    
+    .typing-indicator {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .typing-indicator.show {
+      opacity: 1;
+    }
+    
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--text-secondary);
+      border-radius: 50%;
+      margin: 0 4px;
+      animation: typingAnimation 1.4s infinite ease-in-out;
+    }
+    
+    .typing-dot:nth-child(1) {
+      animation-delay: 0s;
+    }
+    
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes typingAnimation {
+      0%, 60%, 100% {
+        transform: translateY(0);
+      }
+      30% {
+        transform: translateY(-8px);
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .card {
+        padding: 30px 20px;
+      }
+      
+      .header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card animate__animated animate__fadeIn">
+      <button class="settings-toggle" id="settingsToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+      
+      <div class="header">
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M17 9V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 7h10v6H5m12 6H9v-6h8Z"/>
+          </svg>
+        </div>
+        <h1>BATCH 1 PROJECT</h1>
+        <p>project members: 433,434,436,437,438</p>
+      </div>
+      
+      <div class="form-group">
+        <label for="message">messages</label>
+        <div class="input-wrapper">
+          <textarea id="message" rows="3" placeholder="Type the message here..."></textarea>
+        </div>
+      </div>
+      
+      <button class="btn" id="sendBtn">
+        <span id="btnText">Send bro</span>
+      </button>
+      
+      <div class="typing-indicator" id="typingIndicator">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+      
+      <div class="status" id="status"></div>
+      
+      <div class="connection-status">
+        <div class="connection-dot" id="connectionDot"></div>
+        <span id="connectionText">Disconnected</span>
+      </div>
+      
+      <div class="settings-panel" id="settingsPanel">
+        <div class="form-group">
+          <label for="espIp">ESP32 IP Address</label>
+          <div class="input-wrapper">
+            <input type="text" id="espIp" placeholder="http://192.168.X.X">
+          </div>
+        </div>
+        <button class="btn" id="saveSettingsBtn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elements
+      const messageInput = document.getElementById('message');
+      const sendBtn = document.getElementById('sendBtn');
+      const btnText = document.getElementById('btnText');
+      const statusDiv = document.getElementById('status');
+      const typingIndicator = document.getElementById('typingIndicator');
+      const connectionDot = document.getElementById('connectionDot');
+      const connectionText = document.getElementById('connectionText');
+      const settingsToggle = document.getElementById('settingsToggle');
+      const settingsPanel = document.getElementById('settingsPanel');
+      const espIpInput = document.getElementById('espIp');
+      const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+      
+      // Load saved IP from localStorage
+      let espIp = localStorage.getItem('espIp') || 'http://192.168.X.X';
+      espIpInput.value = espIp;
+      
+      // Check connection status on load
+      checkConnection();
+      
+      // Settings toggle
+      settingsToggle.addEventListener('click', function() {
+        settingsPanel.classList.toggle('open');
+        this.classList.toggle('active');
+      });
+      
+      // Save settings
+      saveSettingsBtn.addEventListener('click', function() {
+        const newIp = espIpInput.value.trim();
+        if (newIp) {
+          espIp = newIp;
+          localStorage.setItem('espIp', newIp);
+          showStatus('Settings saved successfully!', 'success');
+          settingsPanel.classList.remove('open');
+          checkConnection();
+        } else {
+          showStatus('Please enter a valid IP address', 'error');
+        }
+      });
+      
+      // Send message
+      sendBtn.addEventListener('click', sendMessage);
+      
+      // Also allow sending with Enter key (but not Shift+Enter)
+      messageInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+      
+      async function sendMessage() {
+        const msg = messageInput.value.trim();
+        
+        if (!msg) {
+          showStatus('Please enter a message', 'error');
+          return;
+        }
+        
+        // Show loading state
+        btnText.textContent = 'Sending...';
+        sendBtn.disabled = true;
+        typingIndicator.classList.add('show');
+        
+        try {
+          const response = await fetch(`${espIp}/message?text=${encodeURIComponent(msg)}`);
+          const data = await response.text();
+          
+          if (response.ok) {
+            showStatus('Message sent successfully!', 'success');
+            messageInput.value = '';
+            
+            // Add nice animation to button
+            sendBtn.style.background = 'linear-gradient(135deg, var(--success), #059669)';
+            setTimeout(() => {
+              sendBtn.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
+            }, 1000);
+          } else {
+            showStatus(`Error: ${data}`, 'error');
+          }
+        } catch (err) {
+          showStatus('Failed to connect to ESP32', 'error');
+          connectionDot.classList.remove('connected');
+          connectionText.textContent = 'Disconnected';
+        } finally {
+          btnText.textContent = 'Send Message';
+          sendBtn.disabled = false;
+          typingIndicator.classList.remove('show');
+        }
+      }
+      
+      async function checkConnection() {
+        connectionDot.classList.remove('connected');
+        connectionText.textContent = 'Checking connection...';
+        
+        try {
+          // Simple ping to check if device is reachable
+          const response = await fetch(`${espIp}/ping`);
+          if (response.ok) {
+            connectionDot.classList.add('connected');
+            connectionText.textContent = 'Connected';
+          } else {
+            connectionText.textContent = 'Device not responding';
+          }
+        } catch (err) {
+          connectionText.textContent = 'Disconnected';
+        }
+      }
+      
+      function showStatus(message, type) {
+        statusDiv.textContent = message;
+        statusDiv.className = 'status';
+        statusDiv.classList.add(type, 'show');
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+          statusDiv.classList.remove('show');
+        }, 5000);
+      }
+    });
+  </script>
+</body>
+</html>
